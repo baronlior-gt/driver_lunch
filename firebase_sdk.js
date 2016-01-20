@@ -10,7 +10,21 @@ var model = {
             "long": long,
             'time': Math.random(), // "value" event will not trigger unless some value changes
         })
+    },
+
+    onLaunchChange: function(cb) {
+        launches.child("/").on("value", cb);
+        console.log("event registered")
+    },
+
+    joinLaunch: function(lunch_id, driver_id) {
+        var obj = {};
+        obj[driver_id] = "I'll join";
+
+        launches.child("/"+lunch_id+"/participants").push(obj);
     }
+
+
 };
 
 
@@ -22,21 +36,16 @@ function getParameterByName(name) {
 }
 
 
-function onEventsChanged(cb) {
-    launches.child("/").on("value", cb);
-    console.log("event registered")
-}
 
-
-onEventsChanged(function(snapshot){
+model.onLaunchChange(function(snapshot){
     console.log("event triggered");
     var lunches = snapshot.val();
 
     var container = $(".lunches");
     container.text("");
-    $.each(lunches, function(index, value) {
+    $.each(lunches, function(id, value) {
         console.log(value.name);
-        container.append("<div>" + value.name + "</div>");
+        container.append("<div>" + id + " - " + value.name + "</div>");
         container.append("<br>");
     });
 
@@ -46,9 +55,18 @@ onEventsChanged(function(snapshot){
 $(function(){
     var lunchName = getParameterByName("lunch");
     if (lunchName && lunchName != "") {
-        console.log("["+lunchName+"]");
+        console.log("lunch: ["+lunchName+"]");
 
         model.addLaunch(lunchName, 0, 0, 19);
+    }
+
+    var joinLunchRecord = getParameterByName("join");
+    if (joinLunchRecord && joinLunchRecord != "") {
+        console.log("join: ["+joinLunchRecord+"]");
+
+        var lunch_id = joinLunchRecord.split("|")[0];
+        var driver_id = joinLunchRecord.split("|")[1];
+        model.joinLaunch(lunch_id, driver_id);
     }
 });
 
