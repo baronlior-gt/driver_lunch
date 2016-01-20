@@ -14,15 +14,12 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
 
         $scope.lunch = "בא לי לאכול עם החברה";
 
+        $scope.getDriverId = function getDriverId(){
+            return parseInt($location.search().driver)
+        };
+
         $scope.getDriverImage = function getDriverImage() {
-            switch (parseInt($location.search().driver)) {
-                case 1:
-                    return "./images/alexey.png";
-                case 2:
-                    return "./images/ohad.png";
-                default:
-                    return "./images/alexey.png";
-            }
+            return model.drivers[$scope.getDriverId()].pic_url;
         };
 
         $scope.chooseEatHere = function chooseEatHere() {
@@ -75,6 +72,7 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
 
         $scope.joinLunch = function joinLunch() {
             MapService.showCurrentPosition(renderJoinLunch);
+            model.joinLaunch(rest_id, $scope.getDriverId());
         }
 
     }
