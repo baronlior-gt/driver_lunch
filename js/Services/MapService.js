@@ -59,9 +59,18 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
                     }
                     */
                 });
-            }
+            };
+
+            function showLunchesPositions() {
+                var locations = [{"lat": 32.108580, "lng": 34.838334}, {"lat": 32.109246, "lng": 34.840262}];
+                $.each(locations, function (index, loc) {
+                    // debugger;
+                    placeMarker({"y": loc.lat, "x": loc.lng}, MarkerTypes.FOOD_PLACE);
+                });
+            };
 
             showUserPosition();
+            showLunchesPositions();
             //$interval(showUserPosition, 5000);
 
         }
@@ -148,6 +157,8 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
         switch (type) {
             case MarkerTypes.YOUR_TAXI:
                 return that.makeIcon("./images/taxi.png");
+            case MarkerTypes.FOOD_PLACE:
+                return that.makeIcon("./images/burger.png")
         }
     }
 
