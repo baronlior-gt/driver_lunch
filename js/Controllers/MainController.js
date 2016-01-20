@@ -33,7 +33,7 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
         };
 
 
-        this.chooseJoinForLunch = function chooseJoinForLunch(restId) {
+        $scope.chooseJoinForLunch = function chooseJoinForLunch(restId) {
             model.joinLaunch(restId, $scope.getDriverId());
             MapService.closeInfo();
         };
