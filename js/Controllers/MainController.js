@@ -18,6 +18,10 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
             return parseInt($location.search().driver)
         };
 
+        $scope.displayOptions = function displayOptions() {
+            MapService.showLunchesPositions();
+        };
+
         $scope.getDriverImage = function getDriverImage() {
             return model.drivers[$scope.getDriverId()].pic_url;
         };

@@ -35,6 +35,13 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     }
 
 
+    this.showLunchesPositions = function showLunchesPositions() {
+        $.each(model.rests, function (index, rest) {
+            // debugger;
+            placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE, renderLunchOption);
+        });
+    };
+
     //Initialize map
     function initializeMap() {
         var mapProp = {
@@ -76,18 +83,12 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
                     }
                     */
                 });
-            };
+            }
 
-            function showLunchesPositions() {
-                var locations = [{"lat": 32.108580, "lng": 34.838334}, {"lat": 32.109246, "lng": 34.840262}];
-                $.each(model.rests, function (index, rest) {
-                    // debugger;
-                    placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE, renderLunchOption);
-                });
-            };
+
 
             showUserPosition();
-            showLunchesPositions();
+
             //$interval(showUserPosition, 5000);
 
         }
