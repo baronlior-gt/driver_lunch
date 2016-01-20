@@ -35,6 +35,7 @@ var model = {
         var obj = {};
         obj[driver_id] = "I'll join";
 
+        debugger
         launches.child("/" + lunch_id).push(obj);
     }
 
