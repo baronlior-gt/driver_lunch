@@ -14,6 +14,7 @@
     <script src = "./js/Services/MapService.js"></script>
 
     <script src = "./js/Enums/MarkerTypes.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -26,7 +27,7 @@
         <img id = "logo" src = "./images/logo.png" class = 'pull-left' />
         <span>{{getDriverName()}}</span>
 
-        <button class = 'pull-right btn btn-primary'>Lunch</button>
+        <button class = 'pull-right btn btn-primary'>{{lunch}}</button>
         <button ng-click = "displayLunchOption()" class = 'pull-right btn btn-primary'>Set lunch</button>
         <button ng-click = "joinLunch()" class = 'pull-right btn btn-primary'>Join Lunch</button>
     </header>

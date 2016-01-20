@@ -64,7 +64,7 @@ footer {
     margin-right:4vh;
 }
 
-.eatHere {
+.eatHere, .joinToEat {
     position:absolute;
     right:0;
     bottom:0;
