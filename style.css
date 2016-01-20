@@ -23,7 +23,7 @@ footer {
     height:20vh;
     background-color:white;
     z-index:200;
-    bottom:5vh;
+    bottom:1vh;
     margin-left:auto;
     margin-right:auto;
     left:45%;
@@ -72,7 +72,7 @@ footer {
 
 #driverPicture {
     border:2vh solid white;
-    height: 20vh;
+    height: 30vh;
     margin:2vh;
     position:absolute;
     right:2vh;
