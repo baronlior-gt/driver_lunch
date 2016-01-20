@@ -33,9 +33,8 @@ var model = {
     joinLaunch: function(lunch_id, driver_id) {
 
         var obj = {};
-        obj[driver_id] = "I'll join";
+        obj[driver_id] = driver_id;
 
-        debugger
         launches.child("/" + lunch_id).push(obj);
     }
 

@@ -48,9 +48,9 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
 
     function renderJoinLunch(marker, restId) {
         var str = "<div ng-controller='MainController'><div class = 'pull-left'>" +
-            "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />";
+            "<img class = 'lunchPlaceImage' src = '" + model.rests[restId].pic_url + "' />";
         str += "</div>";
-        str += "<div class = 'pull-right'><h1>Hatuliya</h1>";
+        str += "<div class = 'pull-right'><h1>"+model.rests[restId].name+"</h1>";
         str += "נהגוס " + users[0].driver_name + " מתפנק פה ב " + "12:00";
         str += "<br /><button ng-click = 'chooseJoinForLunch(" + restId + ")' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
         str += "</div></div>";
@@ -63,7 +63,7 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     this.showLunchesPositions = function showLunchesPositions(lunches) {
         var l = lunches;
         $.each(model.rests, function (index, rest) {
-            if (l[index].length > 0) {
+            if (l && l[index] && l[index].length > 0) {
                 placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.MEETUP, renderJoinLunch);
             }
             else {
