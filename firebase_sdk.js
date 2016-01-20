@@ -65,7 +65,7 @@ model.onLaunchChange(function(snapshot){
 });
 
 
-$(function(){
+var dummy = (function(){
     var lunchName = getParameterByName("lunch");
     if (lunchName && lunchName != "") {
         console.log("lunch: ["+lunchName+"]");
@@ -81,7 +81,7 @@ $(function(){
         var driver_id = joinLunchRecord.split("|")[1];
         model.joinLaunch(lunch_id, driver_id);
     }
-});
+})();
 
 
 
