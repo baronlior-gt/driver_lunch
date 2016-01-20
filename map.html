@@ -21,11 +21,14 @@
 </head>
 <body ng-controller = "MainController">
     <header>
+        <img id = "logo" src = "./images/logo.png" class = 'pull-left' />
         <button class = 'pull-right btn btn-primary'>Lunch</button>
     </header>
     <div ng-controller = "MapController" id = "mapContainer" class = "container-fluid">
         <div id = "busyFree">
-            BUSY
+            <div id = "busy">
+                BUSY
+                </div>
             <div id = "free">
                 FREE
             </div>

@@ -3,41 +3,57 @@ body {
 }
 
 header {
-    height:10vh;
+    height:15vh;
 }
 
 footer {
     height:10vh;
+    background-color:silver;
 }
 
 #map {
-    height:80vh;
+    height:75vh;
 }
 
 #busyFree {
+    border: 1vh solid;
+    border-color: silver;
     width:40vh;
     position: absolute;
     height:20vh;
     background-color:white;
     z-index:200;
-    bottom:10vh;
+    bottom:5vh;
     margin-left:auto;
     margin-right:auto;
-    left:150vh;
+    left:45%;
     font-size:5vh;
-    border-radius: 50px;
+    border-radius: 15vh;
+}
+
+#logo {
+    height:10vh;
+    margin:2vh;
+}
+
+#busy {
+    padding-top:6vh;
+    padding-left:4vh;
 }
 
 #free {
     background-color:green;
-    height:18vh;
-    width:18vh;
+    height:16vh;
+    width:16vh;
     margin:1vh;
     padding-top:5vh;
-    padding-left:5vh;
+    padding-left:3vh;
     color:white;
     font-size:5vh;
     float:right;
     text-transform:capitalize;
-    border-radius:50px;
+    border-radius:15vh;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
