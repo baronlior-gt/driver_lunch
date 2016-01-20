@@ -13,3 +13,31 @@ footer {
 #map {
     height:80vh;
 }
+
+#busyFree {
+    width:40vh;
+    position: absolute;
+    height:20vh;
+    background-color:white;
+    z-index:200;
+    bottom:10vh;
+    margin-left:auto;
+    margin-right:auto;
+    left:150vh;
+    font-size:5vh;
+    border-radius: 50px;
+}
+
+#free {
+    background-color:green;
+    height:18vh;
+    width:18vh;
+    margin:1vh;
+    padding-top:5vh;
+    padding-left:5vh;
+    color:white;
+    font-size:5vh;
+    float:right;
+    text-transform:capitalize;
+    border-radius:50px;
+}
