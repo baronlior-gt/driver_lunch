@@ -9,5 +9,24 @@
 </head>
 <body>
   <div class="lunches"></div>
+<script>
+    $(function(){
+        var lunchName = getParameterByName("lunch");
+        if (lunchName && lunchName != "") {
+            console.log("lunch: ["+lunchName+"]");
+
+            model.addLaunch(lunchName, 0, 0, 19);
+        }
+
+        var joinLunchRecord = getParameterByName("join");
+        if (joinLunchRecord && joinLunchRecord != "") {
+            console.log("join: ["+joinLunchRecord+"]");
+
+            var lunch_id = joinLunchRecord.split("|")[0];
+            var driver_id = joinLunchRecord.split("|")[1];
+            model.joinLaunch(lunch_id, driver_id);
+        }
+    });
+</script>
 </body>
 </html>

@@ -4,9 +4,9 @@ var launches = new Firebase("https://gonzo1234.firebaseio.com/launches");
 var model = {
 
     rests : {
-        "0": { "lat": 32.108880, "lng": 34.839711, "name": "חתוליה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/De0pKwdsXiYnQug/1249731-5.jpg"},
+        "0": { "lat": 32.108880, "lng": 34.839711, "name": "פלאפל רצון", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/De0pKwdsXiYnQug/1249731-5.jpg"},
         "1": { "lat": 32.109246, "lng": 34.840262, "name": "כלביה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/Njh1PyTa13R65sC/images.jpeg"},
-        "2": { "lat": 32.107515, "lng": 34.837325, "name": "החתוליה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/DP617N3jaeTA9VT/2_wa.jpg"},
+        "2": { "lat": 32.107515, "lng": 34.837325, "name": "חתוליה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/DP617N3jaeTA9VT/2_wa.jpg"},
         "3": { "lat": 32.106909, "lng": 34.836031, "name": "המסעדה של צחי", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/QUkmSwI27A0AbZC/tsachi.jpg"}
     },
 
@@ -21,7 +21,7 @@ var model = {
     addLaunch: function (rest_id, time){
         launches.push({
             "rest_id": rest_id,
-            'time': Math.random(), // "value" event will not trigger unless some value changes
+            'time': time,
         })
     },
 
@@ -31,10 +31,11 @@ var model = {
     },
 
     joinLaunch: function(lunch_id, driver_id) {
+
         var obj = {};
         obj[driver_id] = "I'll join";
 
-        launches.child("/"+lunch_id+"/participants").push(obj);
+        launches.child("/" + lunch_id).push(obj);
     }
 
 
@@ -56,32 +57,20 @@ model.onLaunchChange(function(snapshot){
 
     var container = $(".lunches");
     container.text("");
-    $.each(lunches, function(id, value) {
-        console.log(value.name);
-        container.append("<div>" + id + " - " + value.name + "</div>");
+    $.each(lunches, function(id, data) {
+        var participants = [];
+        $.each(data, function(id, text){
+            participants.push(id);
+        });
+        console.log(participants);
+        container.append("<div>" + id + " - " + participants + "</div>");
         container.append("<br>");
     });
 
 });
 
 
-var dummy = (function(){
-    var lunchName = getParameterByName("lunch");
-    if (lunchName && lunchName != "") {
-        console.log("lunch: ["+lunchName+"]");
 
-        model.addLaunch(lunchName, 0, 0, 19);
-    }
-
-    var joinLunchRecord = getParameterByName("join");
-    if (joinLunchRecord && joinLunchRecord != "") {
-        console.log("join: ["+joinLunchRecord+"]");
-
-        var lunch_id = joinLunchRecord.split("|")[0];
-        var driver_id = joinLunchRecord.split("|")[1];
-        model.joinLaunch(lunch_id, driver_id);
-    }
-})();
 
 
 
