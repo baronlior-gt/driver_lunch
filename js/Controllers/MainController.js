@@ -26,11 +26,9 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
             return model.drivers[$scope.getDriverId()].pic_url;
         };
 
-        $scope.chooseEatHere = function chooseEatHere() {
-            debugger
+        $scope.chooseEatHere = function chooseEatHere(id) {
             driver_id = $scope.getDriverId();
-            rest_id = 1;
-            MapService.joinLaunch(rest_id, driver_id)
+            MapService.joinLaunch(id, driver_id);
             MapService.closeInfo();
         };
 
