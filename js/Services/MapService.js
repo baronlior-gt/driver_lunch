@@ -38,7 +38,7 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     this.showLunchesPositions = function showLunchesPositions() {
         $.each(model.rests, function (index, rest) {
             // debugger;
-            placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE, renderLunchOption);
+            placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.FOOD_PLACE, renderLunchOption);
         });
     };
 
@@ -174,9 +174,9 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     function getIcon(type) {
         switch (type) {
             case MarkerTypes.YOUR_TAXI:
-                return that.makeIcon("./images/taxi.png");
+                return that.makeIcon("./images/taxi.png", 100);
             case MarkerTypes.FOOD_PLACE:
-                return that.makeIcon("./images/burger.png")
+                return that.makeIcon("./images/burger.png", 50)
         }
     }
 
@@ -304,14 +304,14 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     };
 
 
-    this.makeIcon = function (iconPath) {
+    this.makeIcon = function (iconPath, size) {
         if (!icons[iconPath]) {
             icons[iconPath] = new google.maps.MarkerImage(
                 iconPath,
                 null, /* size is determined at runtime */
                 null, /* origin is 0,0 */
                 null, /* anchor is bottom center of the scaled image */
-                new google.maps.Size(100, 100)
+                new google.maps.Size(size, size)
             );
         }
 
