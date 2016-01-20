@@ -1,4 +1,4 @@
-app.service("MapService", function ($compile, $http, $rootScope, $timeout, $interval,
+app.service("MapService", function ($compile, $http, $rootScope, $timeout, $interval, $location,
                                     MarkerTypes) {
 
 
@@ -16,6 +16,17 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     var isInfoEnabled = false;
     var zoom = DEFAULT_ZOOM;
 
+    var users = [
+        {
+            "driver_name": "אלכסיי",
+            "pic_url": ""
+        },
+        {
+            "driver_name": "אוהד",
+            "pic_url": ""
+        }
+    ];
+
     var icons = [];
 
     function renderLunchOption(marker, id) {
@@ -30,16 +41,34 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
         "<option>13:00</option>"+
         "<option>13:30</option>"+
         "</select>"+
-        "<br /><button ng-click='chooseEatHere(id)' class = 'eatHere btn btn-primary'>אוכל פה</button>"+
+        "<br /><button ng-click='chooseEatHere(" + id + ")' class = 'eatHere btn btn-primary'>אוכל פה</button>"+
         "</div></div>")($rootScope);
         setInfo(marker.getPosition(), compiled[0]);
     }
 
+    function renderJoinLunch(marker, restId) {
+        var str = "<div ng-controller='MainController'><div class = 'pull-left'>" +
+            "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />";
+        str += "</div>";
+        str += "<div class = 'pull-right'><h1>Hatuliya</h1>";
+        str += "נהגוס " + users[0].driver_name + " מתפנק פה ב " + "12:00";
+        str += "<br /><button ng-click = 'chooseJoinForLunch(" + restId + ")' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
+        str += "</div></div>";
 
-    this.showLunchesPositions = function showLunchesPositions() {
+        var compiled = $compile(str)($rootScope);
+        setInfo(marker.getPosition(), compiled[0]);
+    }
+
+
+    this.showLunchesPositions = function showLunchesPositions(lunches) {
+        var l = lunches;
         $.each(model.rests, function (index, rest) {
-            // debugger;
-            placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.FOOD_PLACE, renderLunchOption);
+            if (l[index].length > 0) {
+                placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.MEETUP, renderJoinLunch);
+            }
+            else {
+                placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.FOOD_PLACE, renderLunchOption);
+            }
         });
     };
 
@@ -177,7 +206,9 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
             case MarkerTypes.YOUR_TAXI:
                 return that.makeIcon("./images/taxi.png", 100);
             case MarkerTypes.FOOD_PLACE:
-                return that.makeIcon("./images/burger.png", 50)
+                return that.makeIcon("./images/burger.png", 50);
+            case MarkerTypes.MEETUP:
+                return that.makeIcon("./images/with_friends.png", 50);
         }
     }
 
