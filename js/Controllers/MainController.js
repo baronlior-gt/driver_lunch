@@ -31,17 +31,18 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
         };
 
 
-        this.chooseJoinForLunch = function chooseJoinForLunch() {
+        this.chooseJoinForLunch = function chooseJoinForLunch(restId) {
+            model.joinLaunch(restId, $scope.getDriverId());
             MapService.closeInfo();
         };
 
-        function renderJoinLunch(location) {
+        function renderJoinLunch(location, restId) {
             var str = "<div ng-controller='MainController'><div class = 'pull-left'>" +
                 "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />";
             str += "</div>";
             str += "<div class = 'pull-right'><h1>Hatuliya</h1>";
             str += "נהגוס " + users[0].driver_name + " מתפנק פה ב " + "12:00";
-            str += "<br /><button ng-click = 'chooseJoinForLunch()' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
+            str += "<br /><button ng-click = 'chooseJoinForLunch(restId)' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
             str += "</div></div>";
 
             var compiled = $compile(str)($rootScope);
@@ -50,7 +51,6 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
 
         $scope.joinLunch = function joinLunch() {
             MapService.showCurrentPosition(renderJoinLunch);
-            model.joinLaunch(rest_id, $scope.getDriverId());
         }
 
     }
