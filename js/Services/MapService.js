@@ -18,6 +18,23 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
 
     var icons = [];
 
+    function renderLunchOption(marker) {
+        var compiled = $compile("<div ng-controller='MainController'><div class = 'pull-left'>"+
+        "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />"+
+        "</div>"+
+        "<div class = 'pull-right'><h1>Hatuliya</h1>"+
+        "<select class='form-control'>"+
+        "<option>12:00</option>"+
+        "<option>12:30</option>"+
+        "<option>13:00</option>"+
+        "<option>13:30</option>"+
+        "</select>"+
+        "<br /><button ng-click='chooseEatHere()' class = 'eatHere btn btn-primary'>אוכל פה</button>"+
+        "</div></div>")($rootScope);
+        setInfo(marker.getPosition(), compiled[0]);
+    }
+
+
     //Initialize map
     function initializeMap() {
         var mapProp = {
@@ -62,8 +79,10 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
             };
 
             function showLunchesPositions() {
+                var locations = [{"lat": 32.108580, "lng": 34.838334}, {"lat": 32.109246, "lng": 34.840262}];
                 $.each(model.rests, function (index, rest) {
-                    placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE);
+                    // debugger;
+                    placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE, renderLunchOption);
                 });
             };
 

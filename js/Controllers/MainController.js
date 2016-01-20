@@ -47,22 +47,16 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
         };
 
         function renderJoinLunch(location) {
-            MapService.setInfo(location, (function() {
-                var str = "<div class = 'pull-left'>" +
-                    "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />";
+            var str = "<div ng-controller='MainController'><div class = 'pull-left'>" +
+                "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />";
+            str += "</div>";
+            str += "<div class = 'pull-right'><h1>Hatuliya</h1>";
+            str += "נהגוס " + users[0].driver_name + " מתפנק פה ב " + "12:00";
+            str += "<br /><button ng-click = 'chooseJoinForLunch()' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
+            str += "</div></div>";
 
-                str += "</div>";
-                str += "<div class = 'pull-right'><h1>Hatuliya</h1>";
-
-                str += "נהגוס " + users[0].driver_name + " מתפנק פה ב " + "12:00";
-
-
-
-                str += "<br /><button ng-click = 'chooseJoinForLunch()' class = 'joinToEat btn btn-primary'>מצתרף, אחי</button>";
-
-                str += "</div>";
-                return str;
-            })());
+            var compiled = $compile(str)($rootScope);
+            MapService.setInfo(location, compiled[0]);
         }
 
         $scope.displayLunchOption = function displayLunchOption() {
