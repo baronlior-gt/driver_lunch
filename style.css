@@ -57,3 +57,24 @@ footer {
     right: 0;
     top: 0;
 }
+
+.lunchPlaceImage {
+    max-width:100px;
+    max-height:200px;
+    margin-right:4vh;
+}
+
+.eatHere {
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+#driverPicture {
+    border:2vh solid white;
+    height: 20vh;
+    margin:2vh;
+    position:absolute;
+    right:2vh;
+    z-index:200;
+}
