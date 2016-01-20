@@ -38,7 +38,7 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
     this.showLunchesPositions = function showLunchesPositions() {
         $.each(model.rests, function (index, rest) {
             // debugger;
-            placeMarker({"y": rest.lat, "x": rest.lng}, MarkerTypes.FOOD_PLACE, renderLunchOption);
+            placeMarker({"y": rest.lat, "x": rest.lng, id : index}, MarkerTypes.FOOD_PLACE, renderLunchOption);
         });
     };
 
