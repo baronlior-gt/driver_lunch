@@ -18,18 +18,19 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
 
     var icons = [];
 
-    function renderLunchOption(marker) {
+    function renderLunchOption(marker, id) {
+
         var compiled = $compile("<div ng-controller='MainController'><div class = 'pull-left'>"+
-        "<img class = 'lunchPlaceImage' src = 'http://forumsgallery.tapuz.co.il/ForumsGallery/galleryimages/16_2706200463849.jpg' />"+
+        "<img class = 'lunchPlaceImage' src = '" + model.rests[id].pic_url + "' />"+
         "</div>"+
-        "<div class = 'pull-right'><h1>Hatuliya</h1>"+
+        "<div class = 'pull-right'><h1>"+model.rests[id].name+"</h1>"+
         "<select class='form-control'>"+
         "<option>12:00</option>"+
         "<option>12:30</option>"+
         "<option>13:00</option>"+
         "<option>13:30</option>"+
         "</select>"+
-        "<br /><button ng-click='chooseEatHere()' class = 'eatHere btn btn-primary'>אוכל פה</button>"+
+        "<br /><button ng-click='chooseEatHere(id)' class = 'eatHere btn btn-primary'>אוכל פה</button>"+
         "</div></div>")($rootScope);
         setInfo(marker.getPosition(), compiled[0]);
     }

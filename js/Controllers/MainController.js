@@ -26,7 +26,7 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
             return model.drivers[$scope.getDriverId()].pic_url;
         };
 
-        $scope.chooseEatHere = function chooseEatHere() {
+        $scope.chooseEatHere = function chooseEatHere(id) {
             MapService.closeInfo();
         };
 
