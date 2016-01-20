@@ -52,23 +52,7 @@ function getParameterByName(name) {
 
 
 
-model.onLaunchChange(function(snapshot){
-    console.log("event triggered");
-    var lunches = snapshot.val();
 
-    var container = $(".lunches");
-    container.text("");
-    $.each(lunches, function(id, data) {
-        var participants = [];
-        $.each(data, function(id, text){
-            participants.push(id);
-        });
-        console.log(participants);
-        container.append("<div>" + id + " - " + participants + "</div>");
-        container.append("<br>");
-    });
-
-});
 
 
 
