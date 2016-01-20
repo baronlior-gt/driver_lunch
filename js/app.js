@@ -1,4 +1,8 @@
 var app = angular.module('DriverMeetup', []);
-/**
- * Created by alexey on 20/01/16.
- */
+
+app.config(function($locationProvider) {
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+    });
+});
