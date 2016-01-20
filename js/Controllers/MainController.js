@@ -12,7 +12,7 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
             }
         ];
 
-        $scope.lunch = "בא לי לאכול עם החברה";
+        $scope.lunch = "בא לי לאכול עם החבר'ה";
 
         $scope.getDriverId = function getDriverId(){
             return parseInt($location.search().driver) || 1;
@@ -27,6 +27,10 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
         };
 
         $scope.chooseEatHere = function chooseEatHere() {
+            debugger
+            driver_id = $scope.getDriverId();
+            rest_id = 1;
+            MapService.joinLaunch(rest_id, driver_id)
             MapService.closeInfo();
         };
 

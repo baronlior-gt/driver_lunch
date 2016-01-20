@@ -7,9 +7,9 @@ app.controller("MapController", function($scope, $interval, $timeout,
 		   var lunches = snapshot.val();
 
 		   $.each(lunches, function(rest_id, value) {
-		      console.log(value.time + " " + value.participants);
+		      // console.log(value.time + " " + value.participants);
 
-		      var drive = model.drivers[value.participants[0]] // remove.
+		      // var drive = model.drivers[value.participants[0]] // remove.
 
 		   });
         });
