@@ -28,7 +28,7 @@
         <img id = "logo" src = "./images/logo.png" class = 'pull-left' />
         <span>{{getDriverName()}}</span>
 
-        <button ng-click = "displayOptions()" class = 'pull-right btn btn-primary'>{{lunch}}</button>
+        <button ng-click = "displayOptions()" class = 'displayOptions pull-right btn btn-primary'>{{lunch}}</button>
     </header>
     <div ng-controller = "MapController" id = "mapContainer" class = "container-fluid">
         <img id = "driverPicture" class = 'pull-right' ng-src = "{{getDriverImage()}}" />

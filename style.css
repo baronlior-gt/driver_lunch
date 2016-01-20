@@ -31,7 +31,7 @@ footer {
     border-radius: 15vh;
 }
 
-#logo {
+#logo, .displayOptions {
     height:10vh;
     margin:2vh;
 }
@@ -70,11 +70,13 @@ footer {
     bottom:0;
 }
 
+
+
 #driverPicture {
     border:2vh solid white;
     height: 30vh;
     margin:2vh;
     position:absolute;
-    right:2vh;
+    left:2vh;
     z-index:200;
 }
