@@ -15,7 +15,7 @@ app.controller("MainController", function($scope, $interval, $timeout, $location
         $scope.lunch = "בא לי לאכול עם החברה";
 
         $scope.getDriverId = function getDriverId(){
-            return parseInt($location.search().driver)
+            return parseInt($location.search().driver) || 0;
         };
 
         $scope.displayOptions = function displayOptions() {
