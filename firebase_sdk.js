@@ -4,9 +4,9 @@ var launches = new Firebase("https://gonzo1234.firebaseio.com/launches");
 var model = {
 
     rests : {
-        "0": { "lat": 32.108880, "lng": 34.839711, "name": "פלאפל רצון", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/De0pKwdsXiYnQug/1249731-5.jpg"},
+        "0": { "lat": 32.108880, "lng": 34.839711, "name": "חתוליה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/De0pKwdsXiYnQug/1249731-5.jpg"},
         "1": { "lat": 32.109246, "lng": 34.840262, "name": "כלביה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/Njh1PyTa13R65sC/images.jpeg"},
-        "2": { "lat": 32.107515, "lng": 34.837325, "name": "חתוליה", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/DP617N3jaeTA9VT/2_wa.jpg"},
+        "2": { "lat": 32.107515, "lng": 34.837325, "name": "השיפוד החלוד", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/DP617N3jaeTA9VT/2_wa.jpg"},
         "3": { "lat": 32.106909, "lng": 34.836031, "name": "המסעדה של צחי", "pic_url": "https://s3-eu-west-1.amazonaws.com/uploads-eu.hipchat.com/20405/1377403/QUkmSwI27A0AbZC/tsachi.jpg"}
     },
 
