@@ -1,4 +1,5 @@
-app.service("MapService", function ($compile, $http, $rootScope, $timeout, $interval) {
+app.service("MapService", function ($compile, $http, $rootScope, $timeout, $interval,
+                                    MarkerTypes) {
 
 
     var map;
@@ -44,16 +45,24 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
             });
             console.log("Map initialized");
             function showUserPosition() {
+
+                that.clearMarkers(MarkerTypes.YOUR_TAXI);
+
                 showCurrentPosition(function (location) {
                     that.currentPosition = location;
+
+                    placeMarker({"y": location.lat(), "x": location.lng()},
+                        MarkerTypes.YOUR_TAXI);
+                    /*
                     if (!currentInfo) {
                         setInfo(location, "You are here", true);
                     }
+                    */
                 });
             }
 
             showUserPosition();
-            $interval(showUserPosition, 5000);
+            //$interval(showUserPosition, 5000);
 
         }
     }
@@ -91,10 +100,10 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
      * Place marker at (X,Y)
      * @param markerData - x, y, id of the entity that the marker represents
      * @param icon - what the marker looks like
-     * @param callback - what happens when the marker is called
+     * @param onClick - what happens when the marker is called
      * @returns {google.maps.Marker}
      */
-    function placeMarker(markerData, type, callback) {
+    function placeMarker(markerData, type, onClick) {
 
         var x = markerData.location ? markerData.location.x : markerData.x;
         var y = markerData.location ? markerData.location.y : markerData.y;
@@ -119,9 +128,9 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
             marker.setIcon(icon);
         }
 
-        if (callback) {
+        if (onClick) {
             google.maps.event.addListener(marker, "click", function () {
-                    callback(marker, id, $rootScope);
+                    onClick(marker, id, $rootScope);
                 }
             );
         }
@@ -137,10 +146,8 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
 
     function getIcon(type) {
         switch (type) {
-            case MarkerTypes.FEED_SPOT:
-                return that.makeIcon("/image/feedSpot.png");
-            case MarkerTypes.CAT:
-                return that.makeIcon("/image/cat.svg");
+            case MarkerTypes.YOUR_TAXI:
+                return that.makeIcon("./images/taxi.png");
         }
     }
 
@@ -275,7 +282,7 @@ app.service("MapService", function ($compile, $http, $rootScope, $timeout, $inte
                 null, /* size is determined at runtime */
                 null, /* origin is 0,0 */
                 null, /* anchor is bottom center of the scaled image */
-                new google.maps.Size(50, 50)
+                new google.maps.Size(100, 100)
             );
         }
 
